@@ -1,24 +1,26 @@
 import React from 'react';
 import './App.scss';
-import { NavigationBar } from './components/NavigationBar';
-import { Footer } from './components/Footer';
-// import { CardSm } from './components/BookCards/CardSm/CardSm';
-import { BooksRow } from './components/BookCards/CardSm/BooksRow';
-import { SelectedBook } from './components/BookCards/SelectedBook';
-import { SignUp } from './components/SignUp/SignUp';
-import { SignIn } from './components/SignIn';
+import { NavigationBar, Footer } from './components';
+import { HomePage, Cart, SignUpForm, SignInForm, PickedBook } from './pages';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
 
 
 function App() {
   return (
-    <div className="App">
-    <NavigationBar />
-    <SignUp />
-    <SignIn />
-    <BooksRow/>
-    <SelectedBook/>
-    <Footer />
-    </div>
+    <BrowserRouter>
+      <NavigationBar />
+      <Routes>
+        <Route path={'/'}>
+          <Route index element={<HomePage />} />
+          <Route path={'sign-up'} element={<SignUpForm />} />
+          <Route path={'sign-in'} element={<SignInForm />} />
+          <Route path={'picked-book'} element={<PickedBook />} />
+          <Route path={'cart'} element={<Cart />} />
+        </Route>
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   );
 }
 
