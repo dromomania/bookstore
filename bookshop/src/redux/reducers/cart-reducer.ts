@@ -14,6 +14,12 @@ const cartReducer = (state = initialState, action: any) => {
               cartItems: [...state.cartItems, action.addedItem]
           })
       }
+      case REMOVE_FROM_CART: {
+        return ({
+            ...state,
+            cartItems: state.cartItems.filter(item => item.book.isbn13 !== action.removedItem.book.isbn13)
+        })
+      }
 
 
       default: {

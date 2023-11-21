@@ -28,6 +28,7 @@ const setUser = (user: IUserInfo | null) => ({
 })
 
 function* fetchActivationRegistration(action: any) {
+    console.log(action.activationInfo)
     const response: Response = yield fetch('https://studapi.teachmeskills.by/auth/users/activation/', {
         method: 'POST',
         headers: {
@@ -47,7 +48,7 @@ function* fetchSignUp(action: any) {
       body: JSON.stringify(action.signUpInfo)
   });
   if (response.status === 201) {
-    window.location.pathname = '/signin'
+    window.location.pathname = '/sign-in'
   } else {
     response.json().then((data: any) => {
       const errors = Object.values(data).join('\n');

@@ -8,3 +8,5 @@ export * from './Spacer';
 export * from './Title';
 export * from './CartItem'
 export * from './BooksTemplate'
+export * from './RegistrationActrivation'
+export * from './User'

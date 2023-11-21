@@ -1,6 +1,7 @@
 import { Container } from "react-bootstrap"
 import { useDispatch } from "react-redux"
 import { useState } from "react"
+import { signIn } from "../../redux/action-creators"
 
 
 const SignIn = () => {
@@ -14,12 +15,12 @@ const SignIn = () => {
 
   const dispatch = useDispatch();
 
-  // const handleSignIn = () => {
-  //   dispatch(signIn({
-  //     email,
-  //     password,
-  //   }))
-  // }
+  const handleSignIn = () => {
+    dispatch(signIn({
+      email,
+      password,
+    }))
+  }
 
   const handleEmail = (e: any) => {
     setEmail(e.target.value)
@@ -67,7 +68,7 @@ const SignIn = () => {
 
                       <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign in</p>
 
-                      <form className="mx-1 mx-md-4">
+                      <div className="mx-1 mx-md-4">
 
                         <div className="d-flex flex-row align-items-center mb-4">
                           <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
@@ -96,10 +97,10 @@ const SignIn = () => {
                         </div>
 
                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                          <button type="button" className="btn btn-primary btn-lg">Sign In</button>
+                          <button onClick={handleSignIn} type="button" className="btn btn-primary btn-lg">Sign In</button>
                         </div>
 
-                      </form>
+                      </div>
                     </div>
                   </div>
                 </div>

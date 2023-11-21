@@ -16,6 +16,10 @@ interface ICardInfo {
   pdf?: {}
 }
 
+interface IUser {
+  userName: string | undefined;
+}
+
 interface ICartItem
 {
   quantity: number,
@@ -77,6 +81,7 @@ interface IUserState {
 export {
   type ICardInfo,
   type ICartInfo,
+  type IUser,
   type ICartItem,
   type IUserInfo,
   type IUserState,
