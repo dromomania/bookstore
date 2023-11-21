@@ -7,3 +7,4 @@ export * from './CarouselItem';
 export * from './Spacer';
 export * from './Title';
 export * from './CartItem'
+export * from './BooksTemplate'

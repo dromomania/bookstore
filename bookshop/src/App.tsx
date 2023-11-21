@@ -17,6 +17,7 @@ function App() {
           <Route path={'sign-in'} element={<SignInForm />} />
           <Route path={'picked-book'} element={<PickedBook />} />
           <Route path={'cart'} element={<Cart />} />
+          <Route path={'/:isbn'} element={<PickedBook />} />
         </Route>
       </Routes>
       <Footer />

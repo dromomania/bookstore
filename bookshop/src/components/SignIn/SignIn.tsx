@@ -1,7 +1,57 @@
-import { InputGroup, Container, Form } from "react-bootstrap"
+import { Container } from "react-bootstrap"
+import { useDispatch } from "react-redux"
+import { useState } from "react"
 
 
 const SignIn = () => {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailFull, setEmailFull] = useState(false);
+  const [passwordFull, setPasswordFull] = useState(false);
+  const [emailError, setEmailError] = useState('Email не может быть пустым');
+  const [passwordError, setPasswordError] = useState('Пароль не может быть пустым');
+
+  const dispatch = useDispatch();
+
+  // const handleSignIn = () => {
+  //   dispatch(signIn({
+  //     email,
+  //     password,
+  //   }))
+  // }
+
+  const handleEmail = (e: any) => {
+    setEmail(e.target.value)
+    const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    if (!re.test(String(e.target.value).toLowerCase())) {
+      setEmailError('Email некорректный')
+    } else {
+      setEmailError('')
+    }
+  }
+
+  const handlePassword = (e: any) => {
+    setPassword(e.target.value)
+    if (e.target.value.length < 6) {
+      setPasswordError('Пароль должен быть больше 6 символов')
+    } else if (e.target.value.length > 20) {
+      setPasswordError('Пароль должен быть меньше 20 символов')
+    } else {
+      setPasswordError('')
+    }
+  }
+
+  const handleBlur = (e: any) => {
+    switch (e.target.name) {
+      case 'email':
+        setEmailFull(true)
+        break
+      case 'password':
+        setPasswordFull(true)
+        break
+    }
+  }
 
 
   return (
@@ -23,7 +73,12 @@ const SignIn = () => {
                           <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
                           <div className="form-outline flex-fill mb-0 d-flex gap-3 align-items-center">
                             <i className="bi bi-envelope-fill"></i>
-                            <input type="email" placeholder="Email" className="form-control" />
+
+                            <label>
+                              {(emailFull && emailError) && <div style={{ color: 'red' }}>{emailError}</div>}
+                              <input type="email" value={email} onChange={e => handleEmail(e)} onBlur={e => handleBlur(e)} placeholder="Email" className="form-control" />
+                            </label>
+
                           </div>
                         </div>
 
@@ -31,7 +86,12 @@ const SignIn = () => {
                           <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
                           <div className="form-outline flex-fill mb-0 d-flex gap-3 align-items-center">
                             <i className="bi bi-lock-fill"></i>
-                            <input type="password" placeholder="Password" className="form-control" />
+
+                            <label>
+                              {(passwordFull && passwordError) && <div style={{ color: 'red' }}>{passwordError}</div>}
+                              <input value={password} onChange={e => handlePassword(e)} onBlur={e => handleBlur(e)} type="password" placeholder="Password" className="form-control" />
+                            </label>
+
                           </div>
                         </div>
 
@@ -40,9 +100,7 @@ const SignIn = () => {
                         </div>
 
                       </form>
-
                     </div>
-
                   </div>
                 </div>
               </div>

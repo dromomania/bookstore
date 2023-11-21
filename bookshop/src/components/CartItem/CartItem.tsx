@@ -24,9 +24,12 @@ import {
   MDBTableBody,
   MDBTableHead,
 } from "mdb-react-ui-kit";
-import { Container } from "react-bootstrap";
+import { Container } from "react-bootstrap"
+import { ICartItem } from "../../types"
 
-const CartItem = () => {
+
+const CartItem = (props: ICartItem) => {
+  const { quantity, book } = props
   return (
     <Container>
       <section className="h-100 h-custom">
@@ -39,37 +42,38 @@ const CartItem = () => {
                     <th scope="col" className="h5">
                       Shopping Bag
                     </th>
-                    <th scope="col">Format</th>
+                    <th scope="col">Publisher</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Price</th>
                   </tr>
                 </MDBTableHead>
+
                 <MDBTableBody>
                   <tr>
                     <th scope="row">
                       <div className="d-flex align-items-center">
                         <img
-                          src="https://i.imgur.com/2DsA49b.webp"
+                          src={book?.image}
                           // fluid
                           className="rounded-3"
                           style={{ width: "120px" }}
                           alt="Book"
                         />
                         <div className="flex-column ms-4">
-                          <p className="mb-2">Thinking, Fast and Slow</p>
-                          <p className="mb-0">Daniel Kahneman</p>
+                          <p className="mb-2">{book?.title}</p>
+                          <p className="mb-0">{book?.authors}</p>
                         </div>
                       </div>
                     </th>
                     <td className="align-middle">
-                      <p className="mb-0" style={{ fontWeight: "500" }}>
-                        Digital
-                      </p>
+                      <button className="mb-0" style={{ fontWeight: "500" }}>
+                        <i className="bi bi-trash"></i>
+                      </button>
                     </td>
                     <td className="align-middle">
                       <div className="d-flex flex-row align-items-center">
                         <MDBBtn className="px-2" color="link">
-                          <MDBIcon fas icon="minus" />
+                          {/* <i className="bi bi-dash-lg"></i> */}
                         </MDBBtn>
 
                         <MDBInput
@@ -77,65 +81,18 @@ const CartItem = () => {
                           type="number"
                           size="sm"
                           style={{ width: "50px" }}
-                          defaultValue={2}
-                        />
-
-                        <MDBBtn className="px-2" color="link">
-                          <MDBIcon fas icon="plus" />
-                        </MDBBtn>
-                      </div>
-                    </td>
-                    <td className="align-middle">
-                      <p className="mb-0" style={{ fontWeight: "500" }}>
-                        $9.99
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      <div className="d-flex align-items-center">
-                        <img
-                          src="https://i.imgur.com/Oj1iQUX.webp"
-                          // fluid
-                          className="rounded-3"
-                          style={{ width: "120px" }}
-                          alt="Book"
-                        />
-                        <div className="flex-column ms-4">
-                          <p className="mb-2">
-                            Homo Deus: A Brief History of Tomorrow
-                          </p>
-                          <p className="mb-0">Yuval Noah Harari</p>
-                        </div>
-                      </div>
-                    </th>
-                    <td className="align-middle">
-                      <p className="mb-0" style={{ fontWeight: "500" }}>
-                        Paperback
-                      </p>
-                    </td>
-                    <td className="align-middle">
-                      <div className="d-flex flex-row align-items-center">
-                        <MDBBtn className="px-2" color="link">
-                          <MDBIcon fas icon="minus" />
-                        </MDBBtn>
-
-                        <MDBInput
-                          min={0}
-                          type="number"
-                          size="sm"
-                          style={{ width: "50px" }}
+                          value={quantity}
                           defaultValue={1}
                         />
 
                         <MDBBtn className="px-2" color="link">
-                          <MDBIcon fas icon="plus" />
+                          {/* <i className="bi bi-plus-lg"></i> */}
                         </MDBBtn>
                       </div>
                     </td>
                     <td className="align-middle">
                       <p className="mb-0" style={{ fontWeight: "500" }}>
-                        $13.50
+                        {book?.price}
                       </p>
                     </td>
                   </tr>

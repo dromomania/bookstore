@@ -1,10 +1,12 @@
 import { Button, Card, Container, InputGroup, Row } from "react-bootstrap"
 import React from "react"
 import { useRef } from 'react';
+import { ICardInfo } from "../../../types";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../redux/action-creators";
 
 
-
-const SelectedBook = () => {
+const SelectedBook = (props: ICardInfo | null) => {
 
   // const inputElement = React.createElement('input', {
   //   type: 'number',
@@ -12,35 +14,56 @@ const SelectedBook = () => {
   //   value: '1',
   //   readOnly: true
   // })
-
   const myRef : React.MutableRefObject<HTMLInputElement | null> = useRef<HTMLInputElement>(null)
 
-  const handleClick = () => {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    const quantity = parseInt(myRef.current?.value ?? "")
+    if (props !== null && props !== undefined && !isNaN(quantity))
+      dispatch(addToCart({quantity: quantity, book: props}))
+  }
+
+
+  const handleIncrease = () => {
     if (myRef.current !== null)
-      myRef.current.value = '123456';
-};
+    {
+      const newValue = parseInt(myRef.current.value) + 1
+      if (!isNaN(newValue))
+        myRef.current.value = newValue.toString();
+    }
+  };
+
+  const handleDecrease = () => {
+    if (myRef.current !== null)
+    {
+      const newValue = parseInt(myRef.current.value) - 1
+      if (!isNaN(newValue))
+        myRef.current.value = newValue.toString();
+    }
+  };
 
 return (
   <Container>
     <Card className="d-flex flex-row">
-      <Card.Img style={{ height: '40rem' }} src="https://m.media-amazon.com/images/I/81FE1DUxvvL._AC_UF1000,1000_QL80_.jpg" />
+      <Card.Img style={{ height: '40rem' }} src={props?.image ?? ""} />
       <Card.Body d-flex flex-column>
-        <Card.Title>Card Title</Card.Title>
+        <Card.Title>{props?.title ?? ""}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
         <Card.Text className="fw-weight-bold fs-5 d-flex justify-content-between">
-          $20
+          <span>{props?.price ?? "" }</span>
           <button style={{ border: 'none', background: 'none' }}><i className="bi bi-heart"></i></button>
         </Card.Text>
-        <Card.Text>When magic has gone from the world, and a vicious king rules from his throne of glass, an assassin comes to the castle. She does not come to kill, but to win her freedom. If she can defeat twenty-three killers, thieves, and warriors in a competition to find the greatest assassin in the land, she will become the king’s champion and earn her freedom. Her name is Celaena Sardothien – beautiful, deadly, and destined for greatness.
+        <Card.Text>{props?.desc ?? ""}
         </Card.Text>
         <div className="number d-flex gap-2">
-          {/* <button className="number-minus" type="button" onClick={inputElement.stepDown()}>-</button> */}
+          <button onClick={handleDecrease} className="number-minus" type="button">-</button>
           <input ref={myRef} type="number" min="0" value="1" readOnly />
-          <button  onClick={handleClick} className="number-plus" type="button">+</button>
+          <button onClick={handleIncrease} className="number-plus" type="button">+</button>
         </div>
         <Row>
           <Card.Body className="d-flex justify-content-center gap-2">
-            <Button style={{ width: '20rem' }}>Add to cart</Button>
+            <Button onClick={handleAddToCart} style={{ width: '20rem' }}>Add to cart</Button>
             <Button style={{ width: '20rem' }}>To favorites</Button>
           </Card.Body>
         </Row>

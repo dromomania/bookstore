@@ -15,7 +15,7 @@ const NavigationBar = () => {
             <i className="bi bi-search"></i>
             </Button>
           </InputGroup>
-          <Nav.Link href="#cart"><i className="bi bi-cart4"></i></Nav.Link>
+          <Nav.Link href="/cart"><i className="bi bi-cart4"></i></Nav.Link>
           <div className="vr"></div>
           <Nav.Link href="#liked"><i className="bi bi-heart-fill"></i></Nav.Link>
           <div className="vr"></div>
