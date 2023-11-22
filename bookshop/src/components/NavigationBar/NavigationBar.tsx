@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { IStoreState } from "../../types"
 import { User } from '../User';
 import { Link } from 'react-router-dom';
-import { setSearch } from '../../redux/action-creators';
+import { setSearch, setUser } from '../../redux/action-creators';
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -22,7 +22,7 @@ const NavigationBar = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">B-World</Navbar.Brand>
+        <Navbar.Brand href="/">B-World</Navbar.Brand>
         <Nav className="gap-2">
           <InputGroup >
             <Form.Control
@@ -38,14 +38,17 @@ const NavigationBar = () => {
           <div className="vr"></div>
           <Nav.Link href="#liked"><i className="bi bi-heart-fill"></i></Nav.Link>
           <div className="vr"></div>
-          <Nav.Link href="#myprofile"> {user ?
+          <Nav.Link href="/books"> {user ?
             <User
               userName={user.username}
             /> : <i className="bi bi-person-fill"></i>}</Nav.Link>
         </Nav>
       </Container>
-    </Navbar>
+    </Navbar >
   );
 }
+
+
+
 
 export { NavigationBar }

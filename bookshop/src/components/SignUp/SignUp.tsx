@@ -5,7 +5,6 @@ import { signUp } from "../../redux/action-creators"
 
 const SignUp = () => {
 
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailFull, setEmailFull] = useState(false);
@@ -23,7 +22,7 @@ const SignUp = () => {
       username: userName,
       password,
       email,
-    }));
+    }))
   }
 
   const handleUserName = (e: any) => {

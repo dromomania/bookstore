@@ -1,8 +1,6 @@
-import { Link, Navigate } from "react-router-dom";
-import { IUser } from "../../types";
-import { useState } from "react";
-
-
+import { Link, Navigate } from "react-router-dom"
+import { IUser } from "../../types"
+import { useState } from "react"
 
 export const User = (props: IUser) => {
 
@@ -10,8 +8,10 @@ export const User = (props: IUser) => {
   const firstLetter = userName.charAt(0).toUpperCase();
   return (
     <>
-      <div className="user">{<Link style={{ textDecoration: 'none', color: 'white' }} to={`/addpost`}>{firstLetter}</Link>}</div>
+      <div className="user">
+        {<Link style={{ textDecoration: 'none', color: 'gray', fontWeight: 'bold' }} to={`/addpost`}>{firstLetter}
+        </Link>}
+        </div>
     </>
   )
-
 }

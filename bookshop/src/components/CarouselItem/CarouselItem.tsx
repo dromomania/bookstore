@@ -1,38 +1,57 @@
-import { useState } from 'react';
-import { Container } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { Container, Card } from 'react-bootstrap';
 import Carousel from 'react-bootstrap/Carousel';
+import { CardSm } from '../BookCards';
+import { ICardInfo } from '../../types'
+import { useDispatch } from 'react-redux'
+import { loadCards } from '../../redux/action-creators'
 
-const CarouselItem = () => {
+const CarouselItem = (props: ICardInfo[]) => {
+
+  const dispatch = useDispatch()
+  useEffect(() => { dispatch(loadCards()) })
 
   return (
-    <Container className="my-5">
-      <Carousel data-bs-theme="dark">
-        <Carousel.Item>
-          <img style={{ height: '500px', width: '100%' }}
-            className="d-block w-100"
-            src="https://cdn.shopify.com/s/files/1/2789/4914/files/Sarah_J_Maas_Books.jpg?v=1614932886"
-            alt="First slide"
-          />
+    <Carousel>
+      <Carousel.Item>
+        <Carousel.Caption style={{ color: 'black', textAlign: 'right', marginLeft: '25%', width: '50%', paddingTop: '300px' }} className='d-flex flex-column align-items-center'>
+        {<Card.Title
+            style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
+            {props[0]?.title ?? ""}
+          </Card.Title>}
+        </Carousel.Caption>
+        {<Card.Img
+          style={{ height: '30rem', width: '30rem', fontSize: '20rem', fontWeight: 'bold' }} className="rounded"
+          variant="top"
+          src={props[0]?.image ?? ""} />}
+      </Carousel.Item>
 
-        </Carousel.Item>
-        <Carousel.Item>
-          <img style={{ height: '500px', width: '100%' }}
-            className="d-block w-100"
-            src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/rockcms/2023-03/sarah-maas-books-mc-2x1-230315-v2-b32e68.jpg"
-            alt="Second slide"
-          />
+      <Carousel.Item>
+        <Carousel.Caption style={{ color: 'black', textAlign: 'right', marginLeft: '25%', width: '50%', paddingTop: '300px' }}>
+        {<Card.Title
+            style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            {props[1]?.title ?? ""}
+          </Card.Title>}
+        </Carousel.Caption>
+        {<Card.Img
+          style={{ height: '30rem', width: '30rem', fontSize: '20rem', fontWeight: 'bold' }} className="rounded"
+          variant="top"
+          src={props[1]?.image ?? ""} />}
+      </Carousel.Item>
 
-        </Carousel.Item>
-        <Carousel.Item>
-          <img style={{ height: '500px', width: '100%' }}
-            className="d-block w-100"
-            src="https://2.bp.blogspot.com/-EiJwyvz_6ns/UWZxejctnfI/AAAAAAAAEhc/zFfb5L61w0o/s1600/893991_369427116499830_2059007535_o.jpg"
-            alt="Third slide"
-          />
-
-        </Carousel.Item>
-      </Carousel>
-    </Container >
+      <Carousel.Item>
+        <Carousel.Caption style={{ color: 'black', textAlign: 'right', marginLeft: '25%', width: '50%', paddingTop: '300px' }}>
+        {<Card.Title
+            style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            {props[2]?.title ?? ""}
+          </Card.Title>}
+        </Carousel.Caption>
+        {<Card.Img
+          style={{ height: '30rem', width: '30rem', fontSize: '20rem', fontWeight: 'bold' }} className="rounded"
+          variant="top"
+          src={props[2]?.image ?? ""} />}
+      </Carousel.Item>
+    </Carousel>
   );
 }
 

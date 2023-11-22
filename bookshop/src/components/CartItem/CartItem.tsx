@@ -63,7 +63,6 @@ const CartItem = (props: ICartItem) => {
                       <div className="d-flex align-items-center">
                         <img
                           src={book?.image}
-                          // fluid
                           className="rounded-3"
                           style={{ width: "120px" }}
                           alt="Book"
@@ -82,7 +81,6 @@ const CartItem = (props: ICartItem) => {
                     <td className="align-middle">
                       <div className="d-flex flex-row align-items-center">
                         <MDBBtn className="px-2" color="link">
-                          {/* <i className="bi bi-dash-lg"></i> */}
                         </MDBBtn>
 
                         <MDBInput
@@ -95,7 +93,6 @@ const CartItem = (props: ICartItem) => {
                         />
 
                         <MDBBtn className="px-2" color="link">
-                          {/* <i className="bi bi-plus-lg"></i> */}
                         </MDBBtn>
                       </div>
                     </td>
@@ -127,7 +124,6 @@ const CartItem = (props: ICartItem) => {
                       className="d-flex justify-content-between"
                       style={{ fontWeight: "500" }}
                     >
-                      <p className="mb-0">Shipping</p>
                       <p className="mb-0">$2.99</p>
                     </div>
 

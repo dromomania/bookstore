@@ -2,7 +2,7 @@ import { Container } from "react-bootstrap";
 
 const Footer = () => {
   return (
-    <Container style={{ marginTop: "100%" }}>
+    <Container >
       <footer className="py-5">
         <div className="row">
           <div className="col-6 col-md-2 mb-3">
@@ -37,11 +37,6 @@ const Footer = () => {
             <form>
               <h5>Subscribe to our newsletter</h5>
               <p>Monthly digest of what's new and exciting from us.</p>
-              <div className="d-flex flex-column flex-sm-row w-100 gap-2">
-                <label className="visually-hidden">Email address</label>
-                <input id="newsletter1" type="text" className="form-control" placeholder="Email address"></input>
-                <button className="btn btn-primary" type="button">Subscribe</button>
-              </div>
             </form>
           </div>
         </div>
