@@ -38,7 +38,7 @@ const NavigationBar = () => {
           <div className="vr"></div>
           <Nav.Link href="#liked"><i className="bi bi-heart-fill"></i></Nav.Link>
           <div className="vr"></div>
-          <Nav.Link href="/books"> {user ?
+          <Nav.Link href="/sign-up"> {user ?
             <User
               userName={user.username}
             /> : <i className="bi bi-person-fill"></i>}</Nav.Link>

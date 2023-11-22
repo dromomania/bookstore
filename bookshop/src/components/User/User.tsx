@@ -9,7 +9,7 @@ export const User = (props: IUser) => {
   return (
     <>
       <div className="user">
-        {<Link style={{ textDecoration: 'none', color: 'gray', fontWeight: 'bold' }} to={`/addpost`}>{firstLetter}
+        {<Link style={{ textDecoration: 'none', color: 'gray', fontWeight: 'bold' }} to={`/`}>{firstLetter}
         </Link>}
         </div>
     </>
