@@ -2,10 +2,22 @@ import { Navbar, Container, Nav, InputGroup, Form, Button } from 'react-bootstra
 import { useSelector } from "react-redux"
 import { IStoreState } from "../../types"
 import { User } from '../User';
+import { Link } from 'react-router-dom';
+import { setSearch } from '../../redux/action-creators';
+import { useRef } from 'react';
+import { useDispatch } from 'react-redux';
 
 const NavigationBar = () => {
 
   const user = useSelector((state: IStoreState) => state.user.user)
+  const ref: React.MutableRefObject<HTMLInputElement | null> = useRef<HTMLInputElement>(null)
+  const dispatch = useDispatch();
+
+  const handleSearchClick = () => {
+    if (ref.current !== null) {
+      dispatch(setSearch(ref.current.value))
+    }
+  }
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
@@ -16,9 +28,10 @@ const NavigationBar = () => {
             <Form.Control
               placeholder="Type any book here"
               aria-label="Type any book here"
+              ref={ref}
             />
             <Button variant="outline-secondary" id="button-addon2">
-              <i className="bi bi-search"></i>
+              <Link onClick={handleSearchClick} to="/search"><i className="bi bi-search"></i></Link>
             </Button>
           </InputGroup>
           <Nav.Link href="/cart"><i className="bi bi-cart4"></i></Nav.Link>

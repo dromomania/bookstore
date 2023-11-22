@@ -72,6 +72,7 @@ interface ICardsResponse {
 interface ICardsState {
   cards: ICardInfo[],
   selectedCard: ICardInfo | null,
+  search: string | null,
 }
 
 interface IUserState {

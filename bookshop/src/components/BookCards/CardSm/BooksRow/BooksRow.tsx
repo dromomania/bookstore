@@ -6,14 +6,8 @@ import { useDispatch } from 'react-redux';
 import { loadCards } from "../../../../redux/action-creators";
 
 const BooksRow = (props: ICardInfo[]) => {
-  const search = undefined// useSelector((state: IStoreState) => state.cards.search)
-
   const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(loadCards({
-      search
-    }))
-  }, [search]);
+  useEffect(() => {dispatch(loadCards())})
 
   return (
     <Container>

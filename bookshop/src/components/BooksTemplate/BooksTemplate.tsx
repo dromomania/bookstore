@@ -23,14 +23,10 @@ const splitCards = (arr: ICardInfo[]): ICardInfo[][] => {
 const BooksTemplate = () => {
 
   const cards = useSelector((state: IStoreState) => state.cards.cards)
-  const search = undefined// useSelector((state: IStoreState) => state.cards.search)
-
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(loadCards({
-      search
-    }))
-  }, [search]);
+    dispatch(loadCards())
+  });
 
   return (
     <div>

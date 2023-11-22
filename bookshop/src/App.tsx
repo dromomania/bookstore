@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 import { NavigationBar, Footer, RegistrationActivation } from './components';
-import { HomePage, Cart, SignUpForm, SignInForm, PickedBook } from './pages';
+import { HomePage, Cart, SignUpForm, SignInForm, PickedBook, SearchPage } from './pages';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 
@@ -19,6 +19,7 @@ function App() {
           <Route path={'picked-book'} element={<PickedBook />} />
           <Route path={'cart'} element={<Cart />} />
           <Route path={'/:isbn'} element={<PickedBook />} />
+          <Route path={'search'} element={<SearchPage />} />
         </Route>
       </Routes>
       <Footer />

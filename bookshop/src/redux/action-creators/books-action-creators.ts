@@ -1,6 +1,6 @@
 import { ICardInfo, ICardsResponse } from "../../types";
 import { getToken } from "../../utils";
-import { SET_CARDS, LOAD_CARDS, SET_SELECTED_CARD, LOAD_CARD as LOAD_BOOK, SET_SEARCH, SET_CURRENT_PAGE, SET_TOTAL_PAGES, LOAD_PAGE } from "../action-types";
+import { SET_CARDS, LOAD_CARDS, SET_SELECTED_CARD, LOAD_CARD as LOAD_BOOK, LOAD_SEARCH_CARDS, SET_SEARCH, SET_CURRENT_PAGE, SET_TOTAL_PAGES, LOAD_PAGE, SET_SEARCH_CARDS } from "../action-types";
 import { takeEvery, put } from 'redux-saga/effects'
 
 const setCards = (cards: ICardInfo[]) => ({
@@ -8,8 +8,17 @@ const setCards = (cards: ICardInfo[]) => ({
     cards: cards,
 })
 
-const loadCards = (searchInfo: any) => ({
+const setSearchCards = (cards: ICardInfo[]) => ({
+    type: SET_SEARCH_CARDS,
+    cards: cards,
+})
+
+const loadCards = () => ({
     type: LOAD_CARDS,
+})
+
+const loadSearchCards = (searchInfo: string | null) => ({
+    type: LOAD_SEARCH_CARDS,
     searchInfo,
 })
 
@@ -48,7 +57,13 @@ function* fetchCards(action: any) {
     const resp: Response = yield fetch(`https://api.itbook.store/1.0/new`)
     const data: ICardsResponse = yield resp.json();
     yield put(setCards(data.books))
-    // yield put(setTotalPages(data.count))
+}
+
+function* fetchSearchCards(action: any) {
+    console.log('loading cards')
+    const resp: Response = yield fetch(`https://api.itbook.store/1.0/search/${action.searchInfo}`)
+    const data: ICardsResponse = yield resp.json();
+    yield put(setSearchCards(data.books))
 }
 
 function* fetchLoadPage(action: any) {
@@ -69,6 +84,7 @@ function* fetchLoadBook(action: any) {
 
 function* watcherPost() {
     yield takeEvery(LOAD_CARDS, fetchCards)
+    yield takeEvery(LOAD_SEARCH_CARDS, fetchSearchCards)
     yield takeEvery(LOAD_BOOK, fetchLoadBook)
     yield takeEvery(LOAD_PAGE, fetchLoadPage)
 }
@@ -77,9 +93,11 @@ export {
 
     setSelectedCard,
     setCards,
+    setSearchCards,
     setCurrentPage,
     setTotalPages,
     loadCards,
+    loadSearchCards,
     loadCard,
     loadPage,
     setSearch,

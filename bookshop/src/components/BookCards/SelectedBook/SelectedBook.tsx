@@ -8,12 +8,6 @@ import { addToCart } from "../../../redux/action-creators";
 
 const SelectedBook = (props: ICardInfo | null) => {
 
-  // const inputElement = React.createElement('input', {
-  //   type: 'number',
-  //   min: '0',
-  //   value: '1',
-  //   readOnly: true
-  // })
   const myRef : React.MutableRefObject<HTMLInputElement | null> = useRef<HTMLInputElement>(null)
 
   const dispatch = useDispatch();
@@ -23,7 +17,6 @@ const SelectedBook = (props: ICardInfo | null) => {
     if (props !== null && props !== undefined && !isNaN(quantity))
       dispatch(addToCart({quantity: quantity, book: props}))
   }
-
 
   const handleIncrease = () => {
     if (myRef.current !== null)

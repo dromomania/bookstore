@@ -3,4 +3,4 @@ export * from './Cart'
 export * from './SignUpForm'
 export * from './SignInForm'
 export * from './PickedBook'
-
+export * from './SearchPage'

@@ -1,9 +1,10 @@
 import { ICardInfo } from "../../types"
-import { SET_CARDS, SET_SELECTED_CARD } from "../action-types";
+import { SET_CARDS, SET_SELECTED_CARD, SET_SEARCH, SET_SEARCH_CARDS } from "../action-types";
 
 const initialState = {
   cards: [] as ICardInfo[],
-  selectedCard: null as ICardInfo | null
+  selectedCard: null as ICardInfo | null,
+  search: null as string | null
 }
 
 const cardsReducer = (state = initialState, action: any) => {
@@ -20,17 +21,20 @@ const cardsReducer = (state = initialState, action: any) => {
                 selectedCard: action.card,
             })
         }
-        // case SET_CURRENT_PAGE: {
-        //     return ({
-        //         ...state,
-        //         currentPage: action.currentPage
-        //     })
-        // }
-        // case SET_TOTAL_PAGES: {
-        //     return ({
-        //         ...state,
-        //         total: action.total
-        //     })
+        case SET_SEARCH: {
+            console.log(action.search)
+            return ({
+                ...state,
+                search: action.search
+            })
+        }
+        case SET_SEARCH_CARDS: {
+            return ({
+                ...state,
+                cards: action.cards
+            })
+        }
+
 
         default: {
             return state;
