@@ -20,8 +20,7 @@ interface IUser {
   userName: string | undefined;
 }
 
-interface ICartItem
-{
+interface ICartItem {
   quantity: number,
   book: ICardInfo
 }
